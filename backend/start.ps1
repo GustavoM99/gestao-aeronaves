@@ -13,7 +13,7 @@ Write-Host "`nStarting application (ensure PostgreSQL is running)...`n" -Foregro
 
 # If mvnw fails, show helpful message
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "`n❌ Failed to start the application!" -ForegroundColor Red
+    Write-Host "`nFailed to start the application!" -ForegroundColor Red
     Write-Host "Make sure Java 17+ is installed: java -version" -ForegroundColor Yellow
     Write-Host "Make sure PostgreSQL is running (e.g. docker-compose up -d)" -ForegroundColor Yellow
 }

@@ -9,6 +9,7 @@
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  align-items: center;
 }
 
 .search-input {
@@ -17,6 +18,7 @@
   border: 1px solid #ced4da;
   border-radius: 4px;
   font-size: 1rem;
+  transition: all 0.2s;
 }
 
 .search-input:focus {
@@ -25,7 +27,6 @@
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
-.search-button,
 .clear-button {
   padding: 0.8rem 1.5rem;
   border: none;
@@ -34,20 +35,9 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.search-button {
-  background-color: #4a90e2;
-  color: white;
-}
-
-.search-button:hover {
-  background-color: #357abd;
-}
-
-.clear-button {
   background-color: #6c757d;
   color: white;
+  white-space: nowrap;
 }
 
 .clear-button:hover {

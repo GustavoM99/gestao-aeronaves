@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './SearchBar.css';
 
 interface SearchBarProps {
@@ -8,37 +8,43 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [termo, setTermo] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSearch(termo);
-  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      onSearch(termo);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [termo, onSearch]);
+
+  const handleClear = useCallback(() => {
+    setTermo('');
+  }, []);
 
   return (
     <div className="search-container">
-      <form onSubmit={handleSubmit} className="search-form">
+      <div className="search-form">
         <input
           type="text"
           value={termo}
           onChange={(e) => setTermo(e.target.value)}
           placeholder="Pesquisa por Modelo ou ID"
           className="search-input"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+            }
+          }}
         />
-        <button type="submit" className="search-button">
-          Buscar
-        </button>
         {termo && (
           <button 
             type="button" 
             className="clear-button"
-            onClick={() => {
-              setTermo('');
-              onSearch('');
-            }}
+            onClick={handleClear}
           >
             Limpar
           </button>
         )}
-      </form>
+      </div>
     </div>
   );
 }
